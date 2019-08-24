@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Информация об участнике{%  endblock %}
+
+{% block content %}
+<a href="/">Назад</a>
+<a href="/edit?id={{ student.id }}">Изменить</a>
+<a href="/delete?id={{ student.id }}" onclick="return confirm('Точно удалить?')">Удалить</a>
+<h1>{{ student.surname }} {{ student.name }}</h1>
+{% if student.photo.url != '' %}
+<div class="form-group">
+    <img src="{{ student.photo.url }}" />
+</div>
+{% endif %}
+<ul>
+    <li><strong>Email:</strong> {{ student.email }}</li>
+    <li><strong>Комната:</strong> {{ student.room }}</li>
+    <li><strong>Направление:</strong> {{ student.course.name }}</li>
+    <li><strong>Преподаватель:</strong> {{ student.course.teacher }}</li>
+</ul>
+<p>
+    {{ student.description }}
+</p>
+<form action="/student?id={{student.id}}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label>Ваш комментарий:</label> <input class="form-control" type="text" name="text"/>
+    </div>
+    <div class="form-group">
+        <input class="btn btn-primary" type="submit" value="Написать">
+    </div>
+</form>
+<h1>Мои комментарии</h1>
+
+<ul>
+    {% if comments != ''%}
+    {% for comment in comments %}
+        <li><a href="/comment?id={{ comment.id }}">
+            {{ comment.text }} <strong>{{ comment.student }}</strong></a>
+        </li>
+    {% endfor %}
+    {% endif %}
+</ul>
+{% endblock %}

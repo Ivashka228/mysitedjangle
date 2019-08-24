@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Информация о направлении{%  endblock %}
+
+{% block content %}
+<a href="/courses">Назад</a>
+<a href="/editcourse?id={{ course.id }}">Изменить</a>
+<a href="/deletecourse?id={{ course.id }}" onclick="return confirm('Точно удалить?')">Удалить</a>
+<h1> {{ course.name }}</h1>
+<ul>
+    <li><strong>Направление:</strong> {{ course.name }}</li>
+    <li><strong>Преподаватель:</strong> {{ course.teacher }}</li>
+</ul>
+<p>
+</p>
+{% endblock %}

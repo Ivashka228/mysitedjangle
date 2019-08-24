@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Информация об участнике{%  endblock %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label>Поиск направлений</label> <input class="form-control" type="text" name="name1"/>
+    </div>
+    <div class="form-group">
+        <input class="btn btn-primary" type="submit" value="Найти">
+    </div>
+</form>
+<a href="/addcourse">Добавить</a>
+<h1>Направления</h1>
+
+<ul>
+    {% for course in courses %}
+        <li><a href="/course?id={{ course.id }}">
+            {{ course.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Комментарии{% endblock %}
+
+{% block content %}
+<h1>Комментарии</h1>
+<div class="form-group">
+    <a class="nav-link" href="/mycomments">Мои комментарии</a>
+</div>
+<ul>
+    {% for comment in comments %}
+        <li>
+            {{ comment.text }} <strong>{{ comment.student }}</strong>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

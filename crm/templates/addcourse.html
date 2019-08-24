@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить курс{% endblock %}
+
+{% block content %}
+<a href="/courses">Назад</a>
+<h1>Добавить</h1>
+{% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+        <strong>Ошибка! </strong>{{ message }}
+    </div>
+{% endfor %}
+<form action="/addcourse" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+    <strong>Название: </strong> <input class="form-control" type="text" name="name"/>
+    </div>
+    <div class="form-group">
+    <strong>Преп: </strong> <input class="form-control" type="text" name="teacher"/>
+    </div>
+
+    <!-- TODO: Добавить другие поля -->
+    <div class="form-group">
+        <input class="btn btn-primary" type="submit" value="Добавить">
+    </div>
+</form>
+{% endblock %}

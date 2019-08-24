@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{%  block title %}Добавить курс{% endblock %}
+
+{% block content %}
+<a href="/course?id={{ course.id }}">Назад</a>
+<h1>Изменить: {{ course.surname }} {{ course.name }}</h1>
+    {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            <strong>Ошибка! </strong>{{ message }}
+        </div>
+    {% endfor %}
+<form action="/editcourse?id={{ course.id }}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+    <strong>Название: </strong> <input class="form-control" type="text" name="name" value="{{ course.name }}"/>
+    </div>
+    <div class="form-group">
+    <strong>Преп: </strong> <input class="form-control" type="text" name="teacher" value="{{ course.teacher }}"/>
+    </div>
+    <div class="form-group">
+    <!-- TODO: Добавить другие поля -->
+    <input class="btn btn-primary" type="submit" value="Сохранить">
+    </div>
+</form>
+{% endblock %}

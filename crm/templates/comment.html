@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{%  block title %}Добавить участника{% endblock %}
+
+{% block content %}
+{{comment.text}} <strong>{{comment.student}}</strong><br>
+    <div class="form-group">
+        <a class="btn btn-primary" href="/deletecomment?id={{comment.id}}">Удалить</a>
+        <a class="btn btn-primary" href="/comments">Назад</a>
+    </div>
+{% endblock %}

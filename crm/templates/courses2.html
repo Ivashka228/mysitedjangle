@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Информация об участнике{%  endblock %}
+
+{% block content %}
+<a href="/addcourse">Добавить</a>
+<h1>Направления</h1>
+
+<ul>
+    {% for course in courses %}
+        <li><a href="/course?id={{ course.id }}">
+            {{ course.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

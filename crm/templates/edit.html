@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{%  block title %}Добавить участника{% endblock %}
+
+{% block content %}
+<a href="/student?id={{ student.id }}">Назад</a>
+<h1>Изменить: {{ student.surname }} {{ student.name }}</h1>
+    {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            <strong>Ошибка! </strong>{{ message }}
+        </div>
+    {% endfor %}
+<form action="/edit?id={{ student.id }}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+    <strong>Имя: </strong> <input class="form-control" type="text" name="name" value="{{ student.name }}"/>
+    </div>
+    <div class="form-group">
+    <strong>Фамилия: </strong> <input class="form-control" type="text" name="surname" value="{{ student.surname }}"/>
+    </div>
+    <div class="form-group">
+    <strong>Курс: </strong>
+    <select class="form-control" name="course_id">
+        <option value="{{ student.course.name }}">{{ student.course.name }}</option>
+        {% for course in courses %}
+            <option value="{{ course.id }}">{{ course.name }}</option>
+        {% endfor %}
+    </select>
+    </div>
+    <div class="form-group">
+    <strong>Почта: </strong> <input class="form-control" type="text" name="email" value="{{ student.email }}"/><br>
+    </div>
+    <div class="form-group">
+    <strong>Комната: </strong> <input class="form-control" type="text" name="room" value="{{ student.room }}"/><br>
+    </div>
+    <div class="form-group">
+    <strong>Описание: </strong> <input class="form-control" type="text" name="description" value="{{ student.description }}"/><br>
+    </div>
+    <div class="form-group">
+    <strong>Лицо:</strong> <input class="form-control" type="file" name="avatar"><br>
+    </div>
+    <div class="form-group">
+    <!-- TODO: Добавить другие поля -->
+    <input class="btn btn-primary" type="submit" value="Сохранить">
+    </div>
+</form>
+{% endblock %}
